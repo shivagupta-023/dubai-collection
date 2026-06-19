@@ -32,9 +32,9 @@ export default function Navbar() {
   return (
     <>
       <nav 
-        className={` absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-8 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-8 transition-all duration-300 ${
           isScrolled || menuOpen
-            ? "py-4 " // Scroll ya menu open hone par Glassmorphism
+            ? "py-4 bg-black" // Scroll ya menu open hone par Glassmorphism
             : "py-5 bg-transparent" // Top par transparent
         }`}
       >
