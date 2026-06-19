@@ -1,73 +1,6 @@
-// const collections = [
-//   { id: 1, title: "MAN COLLECTION", image: "/man-collection.jpg" },
-//   { id: 2, title: "WOMAN COLLECTION", image: "/woman-collection.jpg" },
-//   { id: 3, title: "UNISEX COLLECTION", image: "/unisex-collection.jpg" },
-// ];
-
-// export default function ShopByCollection() {
-//   return (
-//     <section className="bg-white py-16 px-4 md:px-6">
-//       {/* 1300px max-width on desktop, full width on mobile */}
-//       <div className="max-w-[1300px] w-full mx-auto">
-        
-//         <h2 className="font-cormorant text-2xl md:text-3xl tracking-[0.15em] uppercase text-[#1a1a1a] mb-8 md:mb-12 text-left">
-//           Shop By <br/>Collection
-//         </h2>
-
-//         {/* 2 Column Grid for Mobile, 3 Column Grid for Desktop */}
-//         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
-//           {collections.map((collection, index) => (
-//             <div 
-//               key={collection.id} 
-//               // index === 2 means the 3rd item (Unisex). On mobile it takes 2 columns, on desktop 1 column.
-//               className={`border border-[#e5e5e5] rounded-xl overflow-hidden group cursor-pointer bg-white transition-shadow hover:shadow-lg ${
-//                 index === 2 ? "col-span-2 md:col-span-1" : "col-span-1"
-//               }`}
-//             >
-//               {/* Image Section */}
-//               {/* Mobile aspect ratios: Man/Woman are 4/5 (taller), Unisex is 16/9 (wider). All reset to 4/3 on desktop */}
-//               <div 
-//                 className={`w-full overflow-hidden bg-[#f5f5f5] ${
-//                   index === 2 ? "aspect-[16/5] md:aspect-[4/3]" : "aspect-[16/9] md:aspect-[4/3]"
-//                 }`}
-//               >
-//                 <img 
-//                   src={collection.image} 
-//                   alt={collection.title} 
-//                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-//                 />
-//               </div>
-              
-//               {/* Content Section - Padding & text scaled down for mobile so it fits nicely side-by-side */}
-//               <div className="p-2 md:p-6 flex flex-col gap-1 md:gap-1.5">
-//                 <h3 className="font-inter text-[11px] md:text-[15px] font-semibold text-[#1a1a1a] tracking-wide">
-//                   {collection.title}
-//                 </h3>
-                
-//                 <div className="flex items-center gap-1 md:gap-1.5 text-[10px] md:text-[13px] font-inter font-medium text-[#666] group-hover:text-[#1a1a1a] transition-colors">
-//                   Explore Now
-//                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="md:w-[14px] md:h-[14px]">
-//                     <path d="M5 12h14M12 5l7 7-7 7"/>
-//                   </svg>
-//                 </div>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-        
-//       </div>
-//     </section>
-//   );
-// }
-
-
-
-
-
-
 import React, { useRef } from 'react';
 
-// Collections Data (Aapka existing data)
+// Collections Data (Unisex hata diya gaya hai)
 const collectionsData = [
   {
     id: "men",
@@ -95,20 +28,6 @@ const collectionsData = [
       { id: "w6", number: "06", name: "Lotus Dew", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
       { id: "w7", number: "07", name: "White Lily", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
       { id: "w8", number: "08", name: "Golden Freesia", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-    ]
-  },
-  {
-    id: "unisex",
-    title: "UNISEX COLLECTION",
-    products: [
-      { id: "u1", number: "01", name: "Musk Mallow", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "u2", number: "02", name: "Santal Blush", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "u3", number: "03", name: "Citrus Grove", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "u4", number: "04", name: "Matcha Green", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "u5", number: "05", name: "Sea Salt & Sage", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "u6", number: "06", name: "Bergamot Breeze", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "u7", number: "07", name: "Cedarwood Spark", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "u8", number: "08", name: "Vanilla Woods", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
     ]
   }
 ];
@@ -142,9 +61,11 @@ const CollectionSlider = ({ title, products }) => {
   };
 
   return (
-    <div className="flex flex-col mb-16 md:mb-24">
+    // Spacing reduced here: mb-16 md:mb-24 se mb-10 md:mb-12 kar diya
+    <div className="flex flex-col mb-10 md:mb-12">
       {/* Header Section */}
-      <div className="flex items-center justify-between mb-8 px-4 md:px-8 max-w-[1400px] mx-auto w-full">
+      {/* Spacing reduced here: mb-8 se mb-5 kar diya */}
+      <div className="flex items-center justify-between mb-5 px-4 md:px-8 max-w-[1400px] mx-auto w-full">
         <h2 className="font-inter text-sm md:text-base tracking-[0.15em] text-[#1a1a1a] uppercase font-medium">
           {title}
         </h2>
@@ -165,18 +86,17 @@ const CollectionSlider = ({ title, products }) => {
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
           onMouseMove={handleMouseMove}
-          // 'cursor-grab' add kiya gaya hai drag feel ke liye
-          className="flex overflow-x-auto gap-6 md:gap-10 px-4 md:px-8 pb-8 snap-x snap-mandatory scrollbar-hide [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
+          // Spacing reduced here: gap-6 md:gap-10 se gap-4 md:gap-6 kar diya
+          className="flex overflow-x-auto gap-4 md:gap-6 px-4 md:px-8 pb-4 snap-x snap-mandatory scrollbar-hide [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
         >
           {products.map((product) => (
             <div 
               key={product.id} 
-              // 'select-none' add kiya hai taaki drag karte time text select na ho
               className="flex flex-col items-center min-w-[200px] md:min-w-[240px] snap-center group select-none"
             >
               {/* Product Image */}
-              <div className="w-full h-[280px] md:h-[320px] bg-[#f8f8f8] mb-6 flex justify-center items-center overflow-hidden">
-                {/* 'pointer-events-none' drag interfere na kare isliye image par laga diya gaya hai */}
+              {/* Spacing reduced here: mb-6 se mb-4 kar diya */}
+              <div className="w-full h-[280px] md:h-[320px] bg-[#f8f8f8] mb-4 flex justify-center items-center overflow-hidden">
                 <img 
                   src={product.image} 
                   alt={product.name} 
@@ -194,12 +114,12 @@ const CollectionSlider = ({ title, products }) => {
               <p className="font-inter text-[11px] md:text-[12px] text-[#666] mb-2">
                 {product.size} - {product.type}
               </p>
-              <p className="font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-4">
+              <p className="font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-3">
                 {product.price}
               </p>
 
               {/* Add to Cart Button */}
-              <button className="border border-[#e5e5e5] text-[#1a1a1a] font-inter text-[10px] md:text-[11px] tracking-widest uppercase py-2.5 px-6 hover:border-black hover:bg-black hover:text-white transition-all duration-300">
+              <button className="border border-[#e5e5e5] text-[#1a1a1a] font-inter text-[10px] md:text-[11px] tracking-widest uppercase py-2 px-6 hover:border-black hover:bg-black hover:text-white transition-all duration-300">
                 Add To Cart
               </button>
             </div>
@@ -212,7 +132,8 @@ const CollectionSlider = ({ title, products }) => {
 
 export default function ShopCollections() {
   return (
-    <section className="bg-white py-16 md:py-24 overflow-hidden">
+    // Main section padding reduced here: py-16 md:py-24 se py-10 md:py-16 kar diya
+    <section className="bg-white py-10 md:py-16 overflow-hidden">
       {collectionsData.map((collection) => (
         <CollectionSlider 
           key={collection.id} 

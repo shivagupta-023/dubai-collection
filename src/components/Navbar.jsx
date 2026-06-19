@@ -32,9 +32,9 @@ export default function Navbar() {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-8 transition-all duration-300 ${
+        className={` absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-8 transition-all duration-300 ${
           isScrolled || menuOpen
-            ? "py-4 bg-[#000000]/40 backdrop-blur-md shadow-lg" // Scroll ya menu open hone par Glassmorphism
+            ? "py-4 " // Scroll ya menu open hone par Glassmorphism
             : "py-5 bg-transparent" // Top par transparent
         }`}
       >
@@ -70,7 +70,7 @@ export default function Navbar() {
 
         {/* Center: Logo */}
         <div className="flex justify-center w-1/3">
-          <a href="#" className="text-[#FFD700] font-cormorant text-xl md:text-3xl tracking-[0.7em] uppercase flex flex-col ">
+          <a href="#" className="text-[#A6A6A6] font-cormorant text-xl md:text-3xl tracking-[0.7em] uppercase flex flex-col ">
             Dubai <span className="text-[12px] tracking-[0.4em] -ml-3 text-center"> Collection</span>
           </a>
         </div>
