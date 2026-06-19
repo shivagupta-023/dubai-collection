@@ -13,7 +13,7 @@ export default function About() {
           <div className="w-full aspect-[4/5] h-[40vh] md:h-[65vh] md:aspect-square bg-[#e8e8e8] overflow-hidden group">
             {/* Main Image: Aap yahan apni actual image ka path daal sakte hain */}
             <img 
-              src="/ColorPro/club-intense.jpeg" 
+              src="/SimplePro/about1.jpeg" 
               alt="Dubai Collection Fragrance" 
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
@@ -26,11 +26,11 @@ export default function About() {
           {/* Thumbnails row (Aligned to top right) */}
           <div className= "w-full flex justify-end">
             <div className="flex gap-4 w- full md:w-[65%]">
-              {["erbba", "marshmallow", "rome"].map((i) => (
+              {["about2", "about3", "about4"].map((i) => (
               <div key={i} className="flex-1 aspect-square bg-[#e8e8e8] overflow-hidden">
                 {/* Thumbnail Images: Yahan choti images ke paths dalenge */}
                 <img 
-                  src={`/ColorPro/${i}.jpeg`} 
+                  src={`/SimplePro/${i}.jpeg`} 
                   alt={`Dubai Collection Detail ${i}`} 
                   className="w-full h-full object-cover"
                 />
