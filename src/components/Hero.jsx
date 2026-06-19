@@ -45,14 +45,22 @@
 export default function Hero() {
   return (
     <section className="relative w-full h-screen bg-[#1a1a1a]">
-      {/* Banner Image */}
+      
+      {/* 1. Desktop Banner (Yeh sirf tablet aur desktop par dikhega) */}
       <img
-        src="/your-banner-image.jpeg" 
-        alt="Hero Banner"
-        className="w-full h-full object-cover object-center"
+        src="/desktop-banner-image.jpeg" 
+        alt="Hero Banner Desktop"
+        className="hidden md:block w-full h-full object-cover object-center"
+      />
+
+      {/* 2. Mobile Banner (Yeh sirf mobile screens par dikhega) */}
+      <img
+        src="/mobile-banner-image.png" 
+        alt="Hero Banner Mobile"
+        className="block md:hidden w-full h-full object-cover object-center"
       />
       
-      {/* Optional: Agar aapko image ke upar thoda dark overlay chahiye text ke liye, to isey use kar sakte hain */}
+      {/* Optional: Agar aapko image ke upar thoda dark overlay chahiye text ke liye */}
       {/* <div className="absolute inset-0 bg-black/30"></div> */}
     </section>
   );

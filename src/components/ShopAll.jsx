@@ -1,33 +1,36 @@
 import React, { useRef } from 'react';
 
-// Collections Data (Unisex hata diya gaya hai)
+// Collections Data (Unisex hata diya gaya hai, aur names UPPERCASE kar diye hain)
 const collectionsData = [
   {
     id: "men",
     title: "MEN COLLECTION",
     products: [
-      { id: "m1", number: "01", name: "Oud Wood", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "m2", number: "02", name: "Savage Musk", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "m3", number: "03", name: "Aqua Marine", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "m4", number: "04", name: "Midnight Leather", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "m5", number: "05", name: "Spiced Amber", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "m6", number: "06", name: "Vetiver Blanc", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "m7", number: "07", name: "Smoky Tobacco", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "m8", number: "08", name: "Black Pepper", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
+      { id: "m1", number: "01", name: "TWEED", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/Tweed_result.webp" },
+      { id: "m2", number: "02", name: "SAVIOUR", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/SAVIOUR _result.webp" },
+      { id: "m3", number: "03", name: "ROME", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/Rome _result.webp" },
+      { id: "m4", number: "04", name: "INVINCIBLE", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/INVINCIBLE _result.webp" },
+      { id: "m5", number: "05", name: "INTENSELY STRONG", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/intensely strong _result.webp" },
+      { id: "m6", number: "06", name: "ICE LUST", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/ICE LUST_result.webp" },
+      { id: "m7", number: "07", name: "ERBA", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/Erba_result.webp" },
+      { id: "m8", number: "08", name: "CLUB INTENSE", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/CLUB Intense _result.webp" },
+      { id: "m9", number: "09", name: "CLUB ABSOLUTE", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/Club absolute_result.webp" },
+      { id: "m10", number: "10", name: "CAN'T IMAGINE", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/can_t imagine_result.webp" },
+      { id: "m11", number: "11", name: "AQUA 6", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forman/Aqua 6 _result.webp" }
     ]
   },
   {
     id: "women",
     title: "WOMEN COLLECTION",
     products: [
-      { id: "w1", number: "01", name: "Rose Vanilla", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "w2", number: "02", name: "Jasmine Bloom", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "w3", number: "03", name: "Velvet Orchid", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "w4", number: "04", name: "Peony Blush", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "w5", number: "05", name: "Sweet Cherry", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "w6", number: "06", name: "Lotus Dew", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "w7", number: "07", name: "White Lily", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
-      { id: "w8", number: "08", name: "Golden Freesia", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/perfume-bottle.jpg" },
+      { id: "w1", number: "01", name: "BOUTIQUE", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forwomen/Boutique_result.webp" },
+      { id: "w2", number: "02", name: "GODDESS", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forwomen/GODDESS_result.webp" },
+      { id: "w3", number: "03", name: "LIBERTY", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forwomen/Liberty_result.webp" },
+      { id: "w4", number: "04", name: "MADAME", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forwomen/madame_result.webp" },
+      { id: "w5", number: "05", name: "MARSHMALLOW", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forwomen/marshmallow _result.webp" },
+      { id: "w6", number: "06", name: "PARADOXE", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forwomen/paradoxe _result.webp" },
+      { id: "w7", number: "07", name: "PURE VANILLA", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forwomen/Pure vanilla _result.webp" },
+      { id: "w8", number: "08", name: "PURE VANILLA", type: "Eau de Parfum", size: "50ml", price: "₹1999", image: "/forwomen/pure vanilla_result.webp" }
     ]
   }
 ];
@@ -61,10 +64,8 @@ const CollectionSlider = ({ title, products }) => {
   };
 
   return (
-    // Spacing reduced here: mb-16 md:mb-24 se mb-10 md:mb-12 kar diya
     <div className="flex flex-col mb-10 md:mb-12">
       {/* Header Section */}
-      {/* Spacing reduced here: mb-8 se mb-5 kar diya */}
       <div className="flex items-center justify-between mb-5 px-4 md:px-8 max-w-[1400px] mx-auto w-full">
         <h2 className="font-inter text-sm md:text-base tracking-[0.15em] text-[#1a1a1a] uppercase font-medium">
           {title}
@@ -86,7 +87,6 @@ const CollectionSlider = ({ title, products }) => {
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
           onMouseMove={handleMouseMove}
-          // Spacing reduced here: gap-6 md:gap-10 se gap-4 md:gap-6 kar diya
           className="flex overflow-x-auto gap-4 md:gap-6 px-4 md:px-8 pb-4 snap-x snap-mandatory scrollbar-hide [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
         >
           {products.map((product) => (
@@ -95,7 +95,6 @@ const CollectionSlider = ({ title, products }) => {
               className="flex flex-col items-center min-w-[200px] md:min-w-[240px] snap-center group select-none"
             >
               {/* Product Image */}
-              {/* Spacing reduced here: mb-6 se mb-4 kar diya */}
               <div className="w-full h-[280px] md:h-[320px] bg-[#f8f8f8] mb-4 flex justify-center items-center overflow-hidden">
                 <img 
                   src={product.image} 
@@ -108,7 +107,8 @@ const CollectionSlider = ({ title, products }) => {
               <p className="font-inter text-[10px] text-[#888] mb-1">
                 {product.number}
               </p>
-              <h3 className="font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-1 hover:text-gray-600 transition-colors cursor-pointer">
+              {/* uppercase class yahan add ki hai safety ke liye */}
+              <h3 className="font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-1 hover:text-gray-600 transition-colors cursor-pointer uppercase">
                 {product.name}
               </h3>
               <p className="font-inter text-[11px] md:text-[12px] text-[#666] mb-2">
@@ -117,11 +117,7 @@ const CollectionSlider = ({ title, products }) => {
               <p className="font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-3">
                 {product.price}
               </p>
-
-              {/* Add to Cart Button */}
-              <button className="border border-[#e5e5e5] text-[#1a1a1a] font-inter text-[10px] md:text-[11px] tracking-widest uppercase py-2 px-6 hover:border-black hover:bg-black hover:text-white transition-all duration-300">
-                Add To Cart
-              </button>
+              {/* Add To Cart button yahan se remove kar diya gaya hai */}
             </div>
           ))}
         </div>
@@ -132,7 +128,6 @@ const CollectionSlider = ({ title, products }) => {
 
 export default function ShopCollections() {
   return (
-    // Main section padding reduced here: py-16 md:py-24 se py-10 md:py-16 kar diya
     <section className="bg-white py-10 md:py-16 overflow-hidden">
       {collectionsData.map((collection) => (
         <CollectionSlider 
