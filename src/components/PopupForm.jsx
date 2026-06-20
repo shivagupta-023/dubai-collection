@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-// Duniya ke sabhi deshon ki list
-const countriesList = [
-  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Côte d'Ivoire", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Congo-Brazzaville)", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine State", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+// India ki major cities ki list (Alphabetical order mein)
+const indianCitiesList = [
+  "Agra", "Ahmedabad", "Ajmer", "Aligarh", "Amritsar", "Asansol", "Aurangabad", "Bareilly", "Belagavi", "Bengaluru", "Bhavnagar", "Bhilai", "Bhiwandi", "Bhopal", "Bhubaneswar", "Bikaner", "Bokaro", "Chandigarh", "Chennai", "Coimbatore", "Cuttack", "Dehradun", "Delhi", "Dhanbad", "Durgapur", "Faridabad", "Firozabad", "Ghaziabad", "Gorakhpur", "Guntur", "Gurugram", "Guwahati", "Gwalior", "Hubli-Dharwad", "Hyderabad", "Indore", "Jabalpur", "Jaipur", "Jalandhar", "Jalgaon", "Jammu", "Jamnagar", "Jamshedpur", "Jhansi", "Jodhpur", "Kakinada", "Kannur", "Kanpur", "Kochi", "Kolhapur", "Kolkata", "Kollam", "Kota", "Kozhikode", "Kurnool", "Ludhiana", "Lucknow", "Madurai", "Malappuram", "Mangaluru", "Meerut", "Moradabad", "Mumbai", "Mysuru", "Nagpur", "Nanded", "Nashik", "Nellore", "Noida", "Patna", "Puducherry", "Pune", "Raipur", "Rajkot", "Rajahmundry", "Ranchi", "Rourkela", "Salem", "Sangli", "Saharanpur", "Siliguri", "Solapur", "Srinagar", "Surat", "Thiruvananthapuram", "Thrissur", "Tiruchirappalli", "Tirunelveli", "Tiruppur", "Ujjain", "Vadodara", "Varanasi", "Vasai-Virar", "Vijayawada", "Visakhapatnam", "Warangal"
 ];
 
 export default function PopupForm() {
   const [isOpen, setIsOpen] = useState(false);
   
-  // Country select karne ke liye state
-  const [selectedCountry, setSelectedCountry] = useState("");
+  // City select karne ke liye state
+  const [selectedCity, setSelectedCity] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,7 +20,7 @@ export default function PopupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Wholesale Form Submitted! Country:", selectedCountry);
+    console.log("Wholesale Form Submitted! City:", selectedCity);
     setIsOpen(false); 
   };
 
@@ -63,7 +63,8 @@ export default function PopupForm() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
+          {/* Email field removed, gaps kept compact */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             
             <div className="relative">
               <input 
@@ -101,39 +102,25 @@ export default function PopupForm() {
               </div>
             </div>
 
-            <div className="relative">
-              <input 
-                type="email" 
-                required
-                placeholder="Email Address"
-                className="w-full border border-[#e5e5e5] rounded-md py-2.5 pl-3 pr-9 font-inter text-[12px] text-[#1a1a1a] placeholder-[#a0a0a0] bg-transparent focus:outline-none focus:border-[#a0a0a0] transition-colors"
-              />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a0a0a0] pointer-events-none">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              </div>
-            </div>
-
-            {/* Country Dropdown FIXED */}
+            {/* City Dropdown Update */}
             <div className="relative cursor-pointer">
               <select 
                 required
-                value={selectedCountry}
-                onChange={(e) => setSelectedCountry(e.target.value)}
-                // Agar country select nahi hai toh placeholder color (#a0a0a0) dikhayega
-                className={`w-full border border-[#e5e5e5] rounded-md py-2.5 pl-3 pr-9 font-inter text-[12px] bg-transparent appearance-none focus:outline-none focus:border-[#a0a0a0] transition-colors cursor-pointer ${selectedCountry === "" ? "text-[#a0a0a0]" : "text-[#1a1a1a]"}`}
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.target.value)}
+                className={`w-full border border-[#e5e5e5] rounded-md py-2.5 pl-3 pr-9 font-inter text-[12px] bg-transparent appearance-none focus:outline-none focus:border-[#a0a0a0] transition-colors cursor-pointer ${selectedCity === "" ? "text-[#a0a0a0]" : "text-[#1a1a1a]"}`}
               >
-                {/* Default placeholder value */}
-                <option value="" disabled>Choose Country</option>
-                
-                {countriesList.map((country, index) => (
-                  // Select ke dropdown ke andar items hamesha dark dikhe isliye class "text-[#1a1a1a]"
-                  <option key={index} value={country} className="text-[#1a1a1a]">
-                    {country}
+                <option value="" disabled>Choose City</option>
+                {indianCitiesList.map((city, index) => (
+                  <option key={index} value={city} className="text-[#1a1a1a]">
+                    {city}
                   </option>
                 ))}
               </select>
               <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a0a0a0] flex items-center gap-1 pointer-events-none">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                {/* Location Map Pin Icon */}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                {/* Dropdown Arrow */}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </div>
             </div>
