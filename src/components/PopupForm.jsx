@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
-// India ki major cities ki list (Alphabetical order mein)
 const indianCitiesList = [
   "Agra", "Ahmedabad", "Ajmer", "Aligarh", "Amritsar", "Asansol", "Aurangabad", "Bareilly", "Belagavi", "Bengaluru", "Bhavnagar", "Bhilai", "Bhiwandi", "Bhopal", "Bhubaneswar", "Bikaner", "Bokaro", "Chandigarh", "Chennai", "Coimbatore", "Cuttack", "Dehradun", "Delhi", "Dhanbad", "Durgapur", "Faridabad", "Firozabad", "Ghaziabad", "Gorakhpur", "Guntur", "Gurugram", "Guwahati", "Gwalior", "Hubli-Dharwad", "Hyderabad", "Indore", "Jabalpur", "Jaipur", "Jalandhar", "Jalgaon", "Jammu", "Jamnagar", "Jamshedpur", "Jhansi", "Jodhpur", "Kakinada", "Kannur", "Kanpur", "Kochi", "Kolhapur", "Kolkata", "Kollam", "Kota", "Kozhikode", "Kurnool", "Ludhiana", "Lucknow", "Madurai", "Malappuram", "Mangaluru", "Meerut", "Moradabad", "Mumbai", "Mysuru", "Nagpur", "Nanded", "Nashik", "Nellore", "Noida", "Patna", "Puducherry", "Pune", "Raipur", "Rajkot", "Rajahmundry", "Ranchi", "Rourkela", "Salem", "Sangli", "Saharanpur", "Siliguri", "Solapur", "Srinagar", "Surat", "Thiruvananthapuram", "Thrissur", "Tiruchirappalli", "Tirunelveli", "Tiruppur", "Ujjain", "Vadodara", "Varanasi", "Vasai-Virar", "Vijayawada", "Visakhapatnam", "Warangal"
 ];
 
 export default function PopupForm() {
   const [isOpen, setIsOpen] = useState(false);
-  
-  // City select karne ke liye state
   const [selectedCity, setSelectedCity] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
+  
+  const form = useRef(); // EmailJS ke liye form reference
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,18 +21,33 @@ export default function PopupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Wholesale Form Submitted! City:", selectedCity);
-    setIsOpen(false); 
+    setIsSubmitting(true);
+
+    // Yahan Apni EmailJS Keys Daalein
+    emailjs.sendForm(
+      'service_03zim2q',    // Replace this
+      'template_unvs38g',   // Replace this
+      form.current, 
+      '-ioVqATtgtRiNtLjK'     // Replace this
+    )
+    .then((result) => {
+        console.log("Email sent successfully:", result.text);
+        setIsSubmitting(false);
+        setIsOpen(false); // Form close on success
+        alert("Thank you! Your inquiry has been sent to Dubai Collection.");
+    }, (error) => {
+        console.log("Error sending email:", error.text);
+        setIsSubmitting(false);
+        alert("Something went wrong. Please try again.");
+    });
   };
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100000] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-500">
-      
       <div className="bg-[#fcfbfc] w-full max-w-[800px] max-h-[90vh] md:max-h-[85vh] rounded-xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative animate-fade-in-up">
         
-        {/* Close Button */}
         <button 
           onClick={() => setIsOpen(false)}
           className="absolute top-3 right-3 z-10 text-[#888] hover:text-[#1a1a1a] transition-colors p-1"
@@ -42,7 +58,6 @@ export default function PopupForm() {
           </svg>
         </button>
 
-        {/* LEFT SIDE: Image */}
         <div className="hidden md:block w-[45%] relative bg-[#ececec]">
           <img 
             src="/contact-us-img.jpeg" 
@@ -51,9 +66,7 @@ export default function PopupForm() {
           />
         </div>
 
-        {/* RIGHT SIDE: Form Content */}
         <div className="w-full md:w-[55%] p-6 md:p-8 flex flex-col justify-center overflow-y-auto">
-          
           <div className="mb-5 md:mb-6 mt-2">
             <h2 className="font-cormorant text-2xl md:text-[28px] leading-[1.15] text-[#1a1a1a] mb-2">
               Wholesale <br /> Business Inquiry
@@ -63,12 +76,14 @@ export default function PopupForm() {
             </p>
           </div>
 
-          {/* Email field removed, gaps kept compact */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          {/* Form me ref={form} add kiya hai */}
+          <form ref={form} onSubmit={handleSubmit} className="flex flex-col gap-3">
             
             <div className="relative">
+              {/* name="business_name" add kiya */}
               <input 
                 type="text" 
+                name="business_name"
                 required
                 placeholder="Store / Business Name"
                 className="w-full border border-[#e5e5e5] rounded-md py-2.5 pl-3 pr-9 font-inter text-[12px] text-[#1a1a1a] placeholder-[#a0a0a0] bg-transparent focus:outline-none focus:border-[#a0a0a0] transition-colors"
@@ -79,8 +94,10 @@ export default function PopupForm() {
             </div>
 
             <div className="relative">
+              {/* name="contact_name" add kiya */}
               <input 
                 type="text" 
+                name="contact_name"
                 required
                 placeholder="Contact Person Name"
                 className="w-full border border-[#e5e5e5] rounded-md py-2.5 pl-3 pr-9 font-inter text-[12px] text-[#1a1a1a] placeholder-[#a0a0a0] bg-transparent focus:outline-none focus:border-[#a0a0a0] transition-colors"
@@ -91,8 +108,10 @@ export default function PopupForm() {
             </div>
 
             <div className="relative">
+              {/* name="whatsapp_number" add kiya */}
               <input 
                 type="tel" 
+                name="whatsapp_number"
                 required
                 placeholder="WhatsApp Number"
                 className="w-full border border-[#e5e5e5] rounded-md py-2.5 pl-3 pr-9 font-inter text-[12px] text-[#1a1a1a] placeholder-[#a0a0a0] bg-transparent focus:outline-none focus:border-[#a0a0a0] transition-colors"
@@ -102,9 +121,10 @@ export default function PopupForm() {
               </div>
             </div>
 
-            {/* City Dropdown Update */}
             <div className="relative cursor-pointer">
+              {/* name="city" add kiya */}
               <select 
+                name="city"
                 required
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
@@ -118,18 +138,17 @@ export default function PopupForm() {
                 ))}
               </select>
               <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a0a0a0] flex items-center gap-1 pointer-events-none">
-                {/* Location Map Pin Icon */}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                {/* Dropdown Arrow */}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </div>
             </div>
 
             <button 
               type="submit"
-              className="mt-2 w-full bg-gradient-to-r from-[#d1d5d8] via-[#eef1f2] to-[#d1d5d8] text-[#1a1a1a] font-inter text-[11px] font-semibold tracking-[0.15em] uppercase py-3.5 rounded-md shadow-sm hover:opacity-90 transition-opacity"
+              disabled={isSubmitting}
+              className={`mt-2 w-full bg-gradient-to-r from-[#d1d5d8] via-[#eef1f2] to-[#d1d5d8] text-[#1a1a1a] font-inter text-[11px] font-semibold tracking-[0.15em] uppercase py-3.5 rounded-md shadow-sm transition-opacity ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'}`}
             >
-              Request Partnership
+              {isSubmitting ? "Sending Inquiry..." : "Request Partnership"}
             </button>
           </form>
 
