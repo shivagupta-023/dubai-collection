@@ -7,8 +7,12 @@ export default function Footer() {
           <div>
             <h4 className="font-cormorant text-xs tracking-[0.3em] uppercase text-white mb-5">Contact Us</h4>
             <div className="flex flex-col gap-2">
-              <p className="font-inter text-xs text-[#a89880]">hello@morta.com</p>
-              <p className="font-inter text-xs text-[#a89880]">+1 (555) 123-4567</p>
+              <p className="font-inter text-xs text-[#a89880]" href="mailto:dubaicollection.in@gmail.com">
+                Dubaicollection.in@gmail.com
+              </p>
+              <a className="font-inter text-xs text-[#a89880]" href="tel:+918115161765">
+                +91 81151 61765
+              </a>
               <p className="font-inter text-xs text-[#a89880] leading-relaxed mt-1">
                 123 Fragrance Lane, Los Angeles<br />CA 90001, United States
               </p>
@@ -30,7 +34,7 @@ export default function Footer() {
             <h4 className="font-cormorant text-xs tracking-[0.3em] uppercase text-white mb-5">Follow Us</h4>
             <div className="flex items-center gap-4 mt-1">
               {/* Instagram */}
-              <a href="#" className="text-[#a89880] hover:text-white transition-colors">
+              <a href="https://www.instagram.com/dubaicollection.in?utm_source=qr&igsh=MTdnb2ViaTlvcTBscQ==" className="text-[#a89880] hover:text-white transition-colors">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
                 </svg>
@@ -64,16 +68,39 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#2e2e2e] pt-6 flex items-center justify-between">
-          <p className="font-inter text-[10px] text-[#666] tracking-wider">© 2024 MORTA. All rights reserved.</p>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="w-8 h-8 border border-[#444] flex items-center justify-center hover:border-[#c8b89a] transition-colors"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8b89a" strokeWidth="1.5">
-              <path d="M12 19V5M5 12l7-7 7 7"/>
-            </svg>
-          </button>
+        {/* Bottom Bar Container */}
+        <div className="border-t border-[#2e2e2e] pt-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+          
+          {/* Copyright Left */}
+          <p className="font-inter text-[10px] text-[#666] tracking-wider text-center md:text-left">
+            © 2026 <span className="text-[#c8b89a]">Dubai Collection.</span> All rights reserved.
+          </p>
+
+          {/* Credits & Arrow Right */}
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+            <p className="font-inter text-[10px] text-[#666] tracking-wider text-center md:text-right">
+              Designed and developed by{" "}
+              <a 
+                href="https://codexshiva.in" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-[#c8b89a] hover:text-white transition-colors"
+              >
+                codexshiva
+              </a>
+            </p>
+            
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="w-8 h-8 border border-[#444] flex items-center justify-center hover:border-[#c8b89a] transition-colors shrink-0"
+              aria-label="Scroll to top"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8b89a" strokeWidth="1.5">
+                <path d="M12 19V5M5 12l7-7 7 7"/>
+              </svg>
+            </button>
+          </div>
+
         </div>
       </div>
     </footer>
