@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 const formats = [
-  { name: "Madame Perfume", size: "50ml", image: "/SimplePro/madame.jpeg" },
-  { name: "EBRA PERFUME", size: "50g", image: "/SimplePro/erba.jpeg" },
-  { name: "PURE VANILA PARFUM", size: "50ml", image: "/SimplePro/pure-vanila.jpeg" },
-  { name: "ROME PARFUM", size: "50ml", image: "/SimplePro/rome.jpeg" },
+  { name: "Madame", size: "50ml", image: "/SimplePro/madame.jpeg" },
+  { name: "EBRA", size: "50ml", image: "/SimplePro/erba.jpeg" },
+  { name: "PURE VANILA", size: "50ml", image: "/SimplePro/pure-vanila.jpeg" },
+  { name: "ROME", size: "50ml", image: "/SimplePro/rome.jpeg" },
 ];
 
 export default function PopularFormats() {

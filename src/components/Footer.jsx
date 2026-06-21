@@ -1,4 +1,12 @@
 export default function Footer() {
+  // Policy links ka data (Yahan humne paths define kar diye hain)
+  const policyLinks = [
+    { name: "Shipping & Delivery", path: "#" }, // Agar iska page nahi hai toh # rehne dein
+    { name: "Returns", path: "#" },             // Agar iska page nahi hai toh # rehne dein
+    { name: "Privacy Policy", path: "#" }, // Privacy Policy page ka link
+    { name: "Terms of Service", path: "#" } // Terms page ka link
+  ];
+
   return (
     <footer className="bg-[#1a1a1a] text-[#c8b89a] py-14 px-8 md:px-16">
       <div className="max-w-7xl mx-auto">
@@ -7,15 +15,12 @@ export default function Footer() {
           <div>
             <h4 className="font-cormorant text-xs tracking-[0.3em] uppercase text-white mb-5">Contact Us</h4>
             <div className="flex flex-col gap-2">
-              <p className="font-inter text-xs text-[#a89880]" href="mailto:dubaicollection.in@gmail.com">
+              <a className="font-inter text-xs text-[#a89880] hover:text-white transition-colors" href="mailto:dubaicollection.in@gmail.com">
                 Dubaicollection.in@gmail.com
-              </p>
-              <a className="font-inter text-xs text-[#a89880]" href="tel:+918115161765">
+              </a>
+              <a className="font-inter text-xs text-[#a89880] hover:text-white transition-colors" href="tel:+918115161765">
                 +91 81151 61765
               </a>
-              <p className="font-inter text-xs text-[#a89880] leading-relaxed mt-1">
-                123 Fragrance Lane, Los Angeles<br />CA 90001, United States
-              </p>
             </div>
           </div>
 
@@ -23,8 +28,15 @@ export default function Footer() {
           <div>
             <h4 className="font-cormorant text-xs tracking-[0.3em] uppercase text-white mb-5">Policy</h4>
             <div className="flex flex-col gap-2">
-              {["Shipping & Delivery", "Returns", "Privacy Policy", "Terms of Service"].map(l => (
-                <a key={l} href="#" className="font-inter text-xs text-[#a89880] hover:text-white transition-colors">{l}</a>
+              {/* Yahan humne map function ko update kiya hai */}
+              {policyLinks.map((link) => (
+                <a 
+                  key={link.name} 
+                  href={link.path} 
+                  className="font-inter text-xs text-[#a89880] hover:text-white transition-colors"
+                >
+                  {link.name}
+                </a>
               ))}
             </div>
           </div>
@@ -70,7 +82,6 @@ export default function Footer() {
 
         {/* Bottom Bar Container */}
         <div className="border-t border-[#2e2e2e] pt-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
-          
           {/* Copyright Left */}
           <p className="font-inter text-[10px] text-[#666] tracking-wider text-center md:text-left">
             © 2026 <span className="text-[#c8b89a]">Dubai Collection.</span> All rights reserved.
@@ -100,7 +111,6 @@ export default function Footer() {
               </svg>
             </button>
           </div>
-
         </div>
       </div>
     </footer>
