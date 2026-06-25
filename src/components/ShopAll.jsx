@@ -1,87 +1,116 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
-// Collections Data (Unisex hata diya gaya hai, names proper case me hain, duplicates removed)
 const collectionsData = [
   {
     id: "men",
     title: "MEN COLLECTION",
     products: [
-      { id: "m1", name: "Tweed", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/Tweed_result.webp" },
-      { id: "m2", name: "Saviour", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/SAVIOUR _result.webp" },
-      { id: "m3", name: "Rome", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/Rome _result.webp" },
-      { id: "m4", name: "Invincible", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/INVINCIBLE _result.webp" },
-      { id: "m5", name: "Intensely Strong", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/intensely strong _result.webp" },
-      { id: "m6", name: "Ice Lust", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/ICE LUST_result.webp" },
-      { id: "m7", name: "Erba", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/Erba_result.webp" },
-      { id: "m8", name: "Club Intense", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/CLUB Intense _result.webp" },
-      { id: "m9", name: "Club Absolute", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/Club absolute_result.webp" },
-      { id: "m10", name: "Can't Imagine", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/can_t imagine_result.webp" },
-      { id: "m11", name: "Aqua 6", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/Aqua 6 _result.webp" }
+      { id: "m1", name: "Tweed", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/tweed.png" },
+      { id: "m2", name: "Saviour", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/saviour.png" },
+      { id: "m3", name: "Rome", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/rome.png" },
+      { id: "m4", name: "Invincible", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/invincible.png" },
+      { id: "m5", name: "Intensely Strong", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/intensely.png" },
+      { id: "m6", name: "Ice Lust", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/ice.png" },
+      { id: "m7", name: "Erba", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/ebra.png" },
+      { id: "m8", name: "Club Absolute", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/club.png" },
+      { id: "m9", name: "Can't Imagine", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/cant.png" },
+      { id: "m10", name: "Aqua 6", type: "Extrait", size: "50ml", price: "₹1999", image: "/forman/aqua.png" }
     ]
   },
   {
     id: "women",
     title: "WOMEN COLLECTION",
     products: [
-      { id: "w1", name: "Boutique", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/Boutique_result.webp" },
-      { id: "w2", name: "Goddess", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/godees.png" },
-      { id: "w3", name: "Liberty", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/Liberty_result.webp" },
-      { id: "w4", name: "Madame", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/madame_result.webp" },
-      { id: "w5", name: "Marshmallow", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/marshmallow _result.webp" },
-      { id: "w6", name: "Paradoxe", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/paradoxe _result.webp" },
-      { id: "w7", name: "Pure Vanilla", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/Pure vanilla _result.webp" }
-      // Duplicate Pure Vanilla ko yahan se hata diya gaya hai
+      { id: "w1", name: "Boutique", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/boutique.png" },
+      { id: "w2", name: "Goddess", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/goodess.png" },
+      { id: "w3", name: "Liberty", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/liberty.png" },
+      { id: "w4", name: "Madame", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/madame.png" },
+      { id: "w5", name: "Marshmallow", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/marshmallow.png" },
+      { id: "w6", name: "Paradoxe", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/paradoxe.png" },
+      { id: "w7", name: "Pure Vanilla", type: "Extrait", size: "50ml", price: "₹1999", image: "/forwomen/pure.png" }
     ]
   }
 ];
 
+// Intersection Observer hook — fires once when element enters viewport
+const useInView = (threshold = 0.15) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return [ref, inView];
+};
+
 const CollectionSlider = ({ title, products }) => {
-  // Scroll Logic Ke Liye Refs
   const scrollRef = useRef(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
-  // Mouse Down (Jab drag start ho)
+  const [headerRef, headerInView] = useInView();
+  const [cardsRef, cardsInView] = useInView(0.05);
+
   const handleMouseDown = (e) => {
     isDragging.current = true;
     startX.current = e.pageX - scrollRef.current.offsetLeft;
     scrollLeft.current = scrollRef.current.scrollLeft;
   };
 
-  // Mouse Leave / Up (Jab drag end ho jaye)
   const handleMouseLeaveOrUp = () => {
     isDragging.current = false;
   };
 
-  // Mouse Move (Jab drag ho raha ho)
   const handleMouseMove = (e) => {
     if (!isDragging.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5; // Scroll speed
+    const walk = (x - startX.current) * 1.5;
     scrollRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
   return (
     <div className="flex flex-col mb-10 md:mb-12">
-      {/* Header Section */}
-      <div className="flex items-center justify-between mb-5 px-4 md:px-8 max-w-[1400px] mx-auto w-full">
-        <h2 className="font-inter text-sm md:text-base tracking-[0.15em] text-[#1a1a1a] uppercase font-medium">
+      {/* Header — slides in from left & right on scroll */}
+      <div
+        ref={headerRef}
+        className={`flex items-center justify-between mb-5 px-4 md:px-8 max-w-350 mx-auto w-full transition-all duration-700 ease-out ${
+          headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}
+      >
+        <h2
+          className={`font-inter text-sm md:text-base tracking-[0.15em] text-[#1a1a1a] uppercase font-medium transition-all duration-700 ease-out ${
+            headerInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'
+          }`}
+        >
           {title}
         </h2>
-        {/* ALL PRODUCTS Link */}
-        <a 
-          href={`/collections/${title.split(' ')[0].toLowerCase()}`} 
-          className="font-inter text-[11px] md:text-[12px] tracking-widest uppercase text-[#666] hover:text-[#1a1a1a] border-b border-transparent hover:border-[#1a1a1a] transition-all duration-300 pb-0.5"
+        <a
+          href={`/collections/${title.split(' ')[0].toLowerCase()}`}
+          className={`font-inter text-[11px] md:text-[12px] tracking-widest uppercase text-[#666] hover:text-[#1a1a1a] border-b border-transparent hover:border-[#1a1a1a] transition-all duration-300 pb-0.5 ${
+            headerInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
+          }`}
+          style={{ transitionDelay: headerInView ? '150ms' : '0ms' }}
         >
           All Products
         </a>
       </div>
 
-      {/* Products Horizontal Scroll Container */}
-      <div className="w-full overflow-hidden">
-        <div 
+      {/* Products Horizontal Scroll */}
+      <div className="w-full overflow-hidden" ref={cardsRef}>
+        <div
           ref={scrollRef}
           onMouseDown={handleMouseDown}
           onMouseLeave={handleMouseLeaveOrUp}
@@ -89,28 +118,47 @@ const CollectionSlider = ({ title, products }) => {
           onMouseMove={handleMouseMove}
           className="flex overflow-x-auto gap-4 md:gap-6 px-4 md:px-8 pb-4 snap-x snap-mandatory scrollbar-hide [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
         >
-          {products.map((product) => (
-            <div 
-              key={product.id} 
-              className="flex flex-col items-center min-w-[200px] md:min-w-[240px] snap-center group select-none"
+          {products.map((product, index) => (
+            <div
+              key={product.id}
+              className={`flex flex-col items-center min-w-50 md:min-w-60 snap-center group select-none transition-all duration-700 ease-out ${
+                cardsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: cardsInView ? `${index * 80}ms` : '0ms' }}
             >
-              {/* Product Image */}
-              <div className="w-full h-[280px] md:h-[320px] bg-[#f8f8f8] mb-4 flex justify-center items-center overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className="h-[80%] object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105 pointer-events-none"
+              {/* Product Image Box */}
+              <div className="w-full h-[280px] md:h-[320px] bg-[#f8f8f8] mb-4 flex justify-center items-center overflow-hidden transition-shadow duration-500 group-hover:shadow-md">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="h-[80%] object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-108 pointer-events-none"
+                  style={{ transition: 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
                 />
               </div>
 
-              {/* Product Details */}
-              <h3 className="font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-1 hover:text-gray-600 transition-colors cursor-pointer capitalize">
+              {/* Product Details — subtle fade-up after image */}
+              <h3
+                className={`font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-1 hover:text-gray-600 transition-all duration-500 cursor-pointer capitalize ${
+                  cardsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+                }`}
+                style={{ transitionDelay: cardsInView ? `${index * 80 + 200}ms` : '0ms' }}
+              >
                 {product.name}
               </h3>
-              <p className="font-inter text-[11px] md:text-[12px] text-[#666] mb-2">
+              <p
+                className={`font-inter text-[11px] md:text-[12px] text-[#666] mb-2 transition-all duration-500 ${
+                  cardsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+                }`}
+                style={{ transitionDelay: cardsInView ? `${index * 80 + 260}ms` : '0ms' }}
+              >
                 {product.size} - {product.type}
               </p>
-              <p className="font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-3">
+              <p
+                className={`font-inter text-[13px] md:text-[14px] text-[#1a1a1a] font-medium mb-3 transition-all duration-500 ${
+                  cardsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+                }`}
+                style={{ transitionDelay: cardsInView ? `${index * 80 + 320}ms` : '0ms' }}
+              >
                 {product.price}
               </p>
             </div>
@@ -122,13 +170,20 @@ const CollectionSlider = ({ title, products }) => {
 };
 
 export default function ShopCollections() {
+  const [sectionRef, sectionInView] = useInView(0.05);
+
   return (
-    <section className="bg-white py-10 md:py-16 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className={`bg-white py-10 md:py-16 overflow-hidden transition-opacity duration-700 ease-out ${
+        sectionInView ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       {collectionsData.map((collection) => (
-        <CollectionSlider 
-          key={collection.id} 
-          title={collection.title} 
-          products={collection.products} 
+        <CollectionSlider
+          key={collection.id}
+          title={collection.title}
+          products={collection.products}
         />
       ))}
     </section>
